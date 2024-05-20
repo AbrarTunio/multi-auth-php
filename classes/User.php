@@ -19,4 +19,17 @@ class User
 
     }
 
+
+    public static function create($conn , $name , $email , $password ){
+        $query = "INSERT INTO users ( name , email , password )
+        VALUES( ?, ? , ? )";
+        $stmt = mysqli_prepare(  $conn , $query );
+        mysqli_stmt_bind_param( $stmt,  'sss' , $name , $email , $password );
+        if ( mysqli_stmt_execute( $stmt ) ){
+            return true;
+        }
+
+
+    }
+
 }
